@@ -117,6 +117,20 @@ class UserController extends Controller
     public function fetch(Request $request){
         return ResponseFormatter::success($request->user(), 'Data profile user berhasil diambil');
     }
+    public function getUserId(Request $request){
+        try {
+            $user = User::where('id', $request->id_user)->first();
+            // $user->profile_photo_path= url().'/'.$user->profile_photo_path;
+            // $coba = url().'/'.$user->profile_photo_path;
+            //  dd($user);
+            return ResponseFormatter::success($user, 'Data profile user berhasil diambil');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message'=> 'Something went wrong',
+                'error'=>$error
+            ], 'Get user gagal', 500);
+        }
+    }
 
     public function updateProfile(Request $request){
         $data = $request-> all();

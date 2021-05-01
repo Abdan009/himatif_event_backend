@@ -30,8 +30,8 @@ class CreateEventsTable extends Migration
             $table->string('organizer');
             $table->string('contact_organizer');
             $table->text('status');
-            $table->date('time_start');
-            $table->date('time_reglimit');
+            $table->text('time_start');
+            $table->text('time_reglimit');
 
             $table->softDeletes();
             $table->timestamps();

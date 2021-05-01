@@ -34,5 +34,4 @@ class Event extends Model
     public function getPicturePathAttribute(){
         return config('app.url') . Storage::url($this->attributes['poster_event']);
     }
-
 }

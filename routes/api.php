@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('user', [UserController::class, 'updateProfile']);
     Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('logout', [UserController::class, 'logout']);
+    Route::get('getUserId',[UserController::class,'getUserId']);
+
 
     //Event
     Route::get('event', [EventController::class, 'all']);

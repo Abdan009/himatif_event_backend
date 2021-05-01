@@ -77,7 +77,9 @@ class EventController extends Controller
                 'time_start' => $request->time_start,
                 'time_reglimit' => $request->time_reglimit,
             ]);
-            return ResponseFormatter::success($event, 'Event berhasil ditambahkan');
+
+            $event2 = Event::with(['user'])->find($event->id);
+            return ResponseFormatter::success($event2, 'Event berhasil ditambahkan');
         } catch (Exception $error) {
             return ResponseFormatter::error([
                 'message' => 'Something went wrong',
@@ -91,8 +93,8 @@ class EventController extends Controller
         $data =$request->all();
         $event = Event::findOrFail($request->input('id'));
         $event->update($data);
-
-        return ResponseFormatter::success($event, 'Event Berhasil Diperbaharui');
+        $event2 = Event::with(['user'])->find($event->id);
+        return ResponseFormatter::success($event2, 'Event Berhasil Diperbaharui');
     }
 
     public function delete(Request $request)
