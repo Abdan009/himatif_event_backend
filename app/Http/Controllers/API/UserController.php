@@ -108,6 +108,7 @@ class UserController extends Controller
     }
 
     public function logout(Request $request){
+        
         $token = $request->user()->currentAccessToken()->delete();
 
         return ResponseFormatter::success($token, 'Token Revoked');
@@ -120,10 +121,18 @@ class UserController extends Controller
     public function getUserId(Request $request){
         try {
             $user = User::where('id', $request->id_user)->first();
-            // $user->profile_photo_path= url().'/'.$user->profile_photo_path;
-            // $coba = url().'/'.$user->profile_photo_path;
-            //  dd($user);
             return ResponseFormatter::success($user, 'Data profile user berhasil diambil');
+        } catch (Exception $error) {
+            return ResponseFormatter::error([
+                'message'=> 'Something went wrong',
+                'error'=>$error
+            ], 'Get user gagal', 500);
+        }
+    }
+    public function getAllUser(){
+        try {
+            $user = User::get();
+            return ResponseFormatter::success($user, 'Data seluruh user user berhasil diambil');
         } catch (Exception $error) {
             return ResponseFormatter::error([
                 'message'=> 'Something went wrong',

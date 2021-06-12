@@ -31,8 +31,10 @@ class JoinEventController extends Controller
                 'schema'=>$request->schema,
                 'note'=>$request->note
             ]);
+
+            $join2 = JoinEvent::with(['user', 'event'])->find($join->id);
     
-            return ResponseFormatter::success($join, 'Daftar Berhasil');
+            return ResponseFormatter::success($join2, 'Daftar Berhasil');
             } catch (Exception $error) {
                 return ResponseFormatter::error([
                     'message'=> 'Something went wrong',

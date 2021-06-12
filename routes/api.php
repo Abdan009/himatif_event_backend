@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('user/photo', [UserController::class, 'updatePhoto']);
     Route::post('logout', [UserController::class, 'logout']);
     Route::get('getUserId',[UserController::class,'getUserId']);
+    Route::get('getAllUser',[UserController::class,'getAllUser']);
 
 
     //Event
@@ -47,6 +48,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
-
+// getAllUser
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
